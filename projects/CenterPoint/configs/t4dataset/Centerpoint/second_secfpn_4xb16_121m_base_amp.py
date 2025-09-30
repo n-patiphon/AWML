@@ -40,8 +40,8 @@ eval_class_range = {
 }
 
 # user setting
-data_root = "data/t4dataset/"
-info_directory_path = "info/user_name/"
+data_root = "/workspace/data/t4datasets/"
+info_directory_path = "info/patiphon_aml_0/"
 train_gpu_size = 4
 train_batch_size = 16
 test_batch_size = 2
@@ -275,7 +275,7 @@ model = dict(
         ),
         # sigmoid(-4.595) = 0.01 for initial small values
         separate_head=dict(type="CustomSeparateHead", init_bias=-4.595, final_kernel=1),
-        loss_cls=dict(type="mmdet.AmpGaussianFocalLoss", reduction="none", loss_weight=1.0),
+        loss_cls=dict(type="mmdet.AmpGaussianFocalLoss", reduction="none", pos_weight=0.25, neg_weight=0.75),
         loss_bbox=dict(type="mmdet.L1Loss", reduction="mean", loss_weight=0.25),
         norm_bbox=True,
     ),
